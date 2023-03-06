@@ -4,17 +4,28 @@
   <RouterLink to="/about">About</RouterLink>
   <RouterLink :to="{name: 'JobsPage'}">Jobs</RouterLink>
   </div>
+
+  <button @click="redirect">Redirect</button>
+  <button @click="back">Go back</button>
+  <button @click="forward">Go forward</button>
   <RouterView/>
 </template>
 
 <script>
-
-
 export default {
   name: 'App',
-  components: {
-    
+  methods: {
+    redirect() {
+      this.$router.push({name: 'Home'})
+    },
+    back() {
+      this.$router.go(-1) // to go back with one step back on the history, .go(-2) to go two steps back 
+    },
+    forward() {
+      this.$router.go(1)
+    }
   }
+  
 }
 </script>
 
@@ -42,5 +53,11 @@ export default {
 #nav a.router-link-exact-active {
   color: white;
   background: crimson;
+}
+button {
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
 }
 </style>
